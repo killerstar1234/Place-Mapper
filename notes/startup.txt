@@ -1,0 +1,78 @@
+Changing this to free for all 1st person view and then make a separt folder in this project with the get room directions
+
+
+They would have to tell me how many floors there are...
+
+I would then make a big array of all the pictures [] - main array
+
+Then for how many floors they said, each floor is one array and push each array in the main array... - [ [], [], [] ]
+
+The order would be index 0 of array would be lowest floor (basement) the next floor would be living floor and so on till the hights they wanted
+
+Then we would start asking for pictures we store it in an object with the room name/number and then the picture path and name 
+    [ [ [ [path], [name/num]] ] ] - main array, current floor, the array with the path of the picture and name of the room
+
+I am thinking instead of just having a array as being the current floor, I should make it a object
+    [  { floor: [floor-name], content: [ [objs] ] }  ] 
+        - We have main array then object that defins the name of floor (probly going to make a drop down of basement, first floor, second floor)
+        - and also the content for all the array with the path and name of the picture of the floor (I will have multiple of these)
+
+
+I will make a custum website address that they can just fire up with node js...
+
+    This website will have a server that will just host a page to u 
+    The page will first ask how many floors are you going to be hosting (you will be able to go forward and back throughout these pages)
+    It will store it as a varibale then send you to a new page
+    Next It will ask for each floor name sending you a fresh new page every time you submit the page name
+    After it has all the starter info (after everything is gathered, put data in map.json), you will then select witch floor you want to start off with
+    you will take a picture and send to server to then store the picture somewhere on your computer (need space for big projects)
+    These pictures should be orginized from index one being the entrance to the room to last being the exit to the next floor or current floor (like on first floor trying to get out of aau building)
+
+HALT i have a diffrent plan/idea on how to hold data for 1rst person walk around
+    map.json will look like:
+        [
+            {floor: "floor-name", content: {
+                entrance: [ [ [path], [name/num], [value] ] ],
+                exits: [ [ [path], [name/num], [value] ] ],
+                rooms: [  [ [path], [name/num], [value] ]  ],
+                hallways: [  [ [path], [name/num], [value] ]  ]
+            }}
+        ]
+
+    New Variable [value] it will be the 2nd index of the array so place 3, this variable will determine the place
+    When in first person walk through mode (free for all, not code telling me what the fastest way is) how does the code know where you are
+    In free for all if you want to go forward, it will be +1 value, if you want to go left it will be + 2 value, if you want to go right + 3, and back -1
+    If you cant go left just bring them back one or just grey out the button or take it away (prob first one)
+
+    There will be a check box to select if the first picture is a entrance, if it is the picture will be sent with a true value to be then stored in the array entrance for the floor
+    Again the main entrance of the floor should be 0 index and should be like door from Elevator, Stairs or house entrance if your doing a house
+
+    If there is two staricases on one floor pick the main one to start at then work your way to the other one to be the last value
+
+    Also ask where the starting point of the project is for free walk.
+        Example: Where would you like people first viewing your free walk through
+
+     
+
+HALT from idea
+    map.json will look like:
+
+    Assume they will alwase start at entrance and think about it like snake 2d
+
+    [
+        { floor: 'floor-name', contentOfFloor: [
+            []
+        ]}
+    ]
+
+
+
+Put value for each room
+
+similar to this, 3-13-23 im tired ill work on it later tmr
+
+[
+    { floor: 'upstairs', contentOfFloor": [
+        [value: 1, forward: [value: 2, forward: [room], left: [value: 5, forward: false, left: [room], right: [outside/before this sub array]], right: [value: 3]], left: false, right: false],
+    ]}
+]
