@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Place Mapper</title>
+</head>
+<body>
+    
+
+    <center>
+
+        <br><br>
+
+        <img src="" alt="Picture" id="picture-element">
+        
+        <br><br>
+    
+        <button onclick="changePick('forward')">forward</button>
+        <button onclick = "changePick('left')">left</button>
+        <button onclick="changePick('right')">right</button>
+        <button onclick = 'changePick("back")'>back</button>
+
+    </center>
+
+
+    <script>
+
+        let picData = {}
+        
+        window.onload = () => {
+            fetch('http://localhost:3000/start')
+            .then(response => {
+                if (response.ok) {
+                return response.blob();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                const img = document.getElementById('picture-element');
+                img.src = imageUrl;
+
+                img.onload = () => {
+                    const aspectRatio = img.naturalWidth / img.naturalHeight;
+                    const newWidth = 400;
+                    const newHeight = newWidth / aspectRatio;
+
+                    img.style.width = newWidth + 'px';
+                    img.style.height = newHeight + 'px';
+                };
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+            fetch('http://localhost:3000/jsondatastart')
+            .then(data => data.json())
+            .then(res => {
+                picData = res
+            })
+            .catch(err => {
+                if(err) {
+                    console.log(err)
+                }
+            })
+        }
+
+        function getPick(index) {
+
+            console.log(index)
+
+            fetch(`http://localhost:3000/picinfo?index=${index}`)
+            .then(data => data.json())
+            .then(res => {
+                picData = res
+            })
+            .catch(err => {
+                if(err) {
+                    console.log(err)
+                }
+            })
+
+            fetch(`http://localhost:3000/pic?index=${index}`)
+            .then(response => {
+                if (response.ok) {
+                return response.blob();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                const img = document.getElementById('picture-element');
+                img.src = imageUrl;
+
+                img.onload = () => {
+                    const aspectRatio = img.naturalWidth / img.naturalHeight;
+                    const newWidth = 400;
+                    const newHeight = newWidth / aspectRatio;
+
+                    img.style.width = newWidth + 'px';
+                    img.style.height = newHeight + 'px';
+                };
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+
+
+
+
+        }
+
+
+        function changePick(dir) {
+            console.log('Dir: ' + dir)
+
+            console.log('Pic Data: ' + picData)
+
+            console.log('Pic Value: ' + picData.value)
+
+            console.log('Pic Left: '+picData.left)
+
+            if(dir === 'forward' && picData.forward) {
+                getPick(picData.forward)
+            } else if(dir === 'back' && picData.back) {
+                getPick(picData.back)
+            } else if(dir === 'left' && picData.left) {
+                getPick(picData.left)
+            } else if(dir === 'right' && picData.right) {
+                getPick(picData.right)
+            } else {
+                console.log("Cant do that")
+            }
+
+        }
+
+    </script>
+</body>
+</html>

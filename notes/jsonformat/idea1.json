@@ -1,0 +1,18 @@
+[
+    { "floor": "upstairs", "content": [
+      {"hallway": [
+        {"value": 1, "forward": 2, "back": "floor1", "right": false, "left": false},
+        {"value": 2, "forward": "bathroom", "back": 1, "right": 3, "left": 5},
+        {"value": 5, "forward": false, "back": 6, "right": 2, "left": "masonroom"},
+        {"value": 3, "forward": false, "back": 4, "right": "parentsroom", "left": 2},
+        {"value": 6, "forward": 5, "back": "mitchroom", "right": false, "left": false},
+        {"value": 4, "forward": 3, "back": false, "right": "guestroom", "left": false}
+      ]},
+      {"rooms": [
+        {"value": 0, "forward": false, "back": false, "right": false, "left": false},
+        "Label it the same as the hallways but start at zero"
+      ]}
+  
+    
+    ]}
+  ]

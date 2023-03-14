@@ -1,0 +1,13 @@
+[
+    {"floor": "upstairs", "content": [
+        {"hallway": [
+            {"value": 1, "forward": 2, "back": false, "right": false, "left": false, "path": "/pics/upstairs_entrace.jpg"},
+            {"value": 2, "forward": "bathroom", "back": 1, "right": 4, "left": 3, "path": "/pics/hallway2.jpg"},
+            {"value": 3, "forward": false, "back": "mitchroom", "right": 2, "left": "masonroom", "path": "/pics/mitchmasonrooms.jpg"},
+            {"value": 4, "forward": false, "back": 5, "right": false, "left": 2, "path": "/pics/balconyview.jpg"},
+            {"value": 5, "forward": 4, "back": 6, "right": "parentsroom", "left": false, "path": "/pics/parentsroom.jpg"},
+            {"value": 6, "forward": 5, "back": false, "right": "guestroom.jpg", "left": false, "path": "/pics/guestroom.jpg"}
+
+        ]}
+    ]}
+]
